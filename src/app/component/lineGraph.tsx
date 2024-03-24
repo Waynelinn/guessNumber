@@ -13,18 +13,25 @@ const LineGraph: React.FC = () => {
 
             ctx.beginPath();
 
-            const numbersArray: number[] = [0, 1, 2, 3, 4, 5]; // Example array of x-values
+            // const numbersArray: number[] = [0, 1, 2, 3, 4, 5]; //  array of x-values
 
+            // for (const x of numbersArray) {
+            //     const y = (x - 2) ** 3 / 16;
+            //     ctx.lineTo(x * 45, DPI_HEIGHT - y * 55); // Scale y-value and draw line
+            // }
+
+            const numbersArray: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
             for (const x of numbersArray) {
                 const y = (x - 2) ** 3 / 16;
-                ctx.lineTo(x * 45, DPI_HEIGHT - y * 55); // Scale y-value and draw line
+                ctx.lineTo((x / (numbersArray.length - 1)) * DPI_WIDTH, DPI_HEIGHT - (y / (numbersArray.length - 1)) * DPI_HEIGHT);
+
             }
 
             ctx.stroke();
         }
 
 
-    }, []); // Empty dependency array to run only once when component mounts
+    }, []);
 
     return (
         <canvas id="myCanvas" style={{ width: '100%', height: '100%' }}></canvas>
