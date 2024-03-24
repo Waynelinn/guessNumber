@@ -38,7 +38,8 @@ const ControlBoard: React.FC<Props> = ({ onStart, setGuessingNum, onUpdateCurRou
         onStart(points)
 
         const playerArray = generateData(4);
-        setcurRoundData([{ name: 'You', points, multiplier }, ...playerArray])
+        const newCurRoundData = [{ name: 'You', points, multiplier }, ...playerArray]
+        setcurRoundData(newCurRoundData)
 
         let num = 0;
         const target = Math.random() * 10;
@@ -58,12 +59,12 @@ const ControlBoard: React.FC<Props> = ({ onStart, setGuessingNum, onUpdateCurRou
                     winScore = points * multiplier
                     onStart(-winScore)
                 }
-
-                setcurRoundData(prevData => prevData.map(player => {
+                const updatedCurRoundData = newCurRoundData.map(player => {
                     const newPoints = player.multiplier >= target ? 0 : player.points * player.multiplier;
                     return { ...player, points: newPoints, result: true };
-                }));
-                onUpdateCurRoundData(curRoundData)
+                })
+                setcurRoundData(updatedCurRoundData)
+                onUpdateCurRoundData(updatedCurRoundData)
 
             }
             setGuessingNum(num);
