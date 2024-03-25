@@ -27,8 +27,8 @@ const GameBoard: React.FC<Props> = ({ guessingNum, statu }) => {
     return (
         <div className="relative h-full">
             <div className={`absolute left-1/3 bottom-2/4 font-bold text-white text-7xl ${textColor}`}>{guessingNum.toFixed(2)}<span className="text-4xl">x</span></div>
-            <div className="h-full  pb-4" >
-                {/* <LineGraph /> */}
+            <div className="h-full  pb-10" >
+                <LineGraph guessNumber={guessingNum} />
             </div>
         </div>
     )
